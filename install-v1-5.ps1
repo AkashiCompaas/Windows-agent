@@ -108,7 +108,7 @@ Start-Process -FilePath "msiexec.exe" -ArgumentList "/i `"$wazuhInstallerPath`" 
 # Download and Replace ossec.conf
 $ossecConfUrl = "https://raw.githubusercontent.com/CyberOpsLab/Windows-agent/main/ossec.conf"
 $ossecConfPath = "C:\Program Files (x86)\ossec-agent\ossec.conf"
-$newConfig = Invoke-WebRequest -Uri $ossecConfUrl -UseBasicPipelining | Select-Object -ExpandProperty Content
+$newConfig = Invoke-WebRequest -Uri $ossecConfUrl | Select-Object -ExpandProperty Content
 
 Write-Output "Downloading new Wazuh configuration block..."
 
