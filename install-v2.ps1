@@ -16,6 +16,7 @@ $yaraBatchUrl = "https://raw.githubusercontent.com/CyberOpsLab/blx-stealer-detec
 $yaraRulesUrl = "https://raw.githubusercontent.com/CyberOpsLab/blx-stealer-detection/main/agent/yara_rules.yar"
 $sysmonZipUrl = "https://download.sysinternals.com/files/Sysmon.zip"
 $sysmonFolder = "C:\Sysmon"
+$sysmonZipPath = "C:\"
 
 # Active-Response Directory and GitHub Source
 $activeResponseDir = "C:\Program Files (x86)\ossec-agent\active-response\bin\"
