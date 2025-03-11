@@ -38,6 +38,9 @@ New-Item -ItemType Directory -Path $activeResponseDir -Force | Out-Null
 Invoke-WebRequest -Uri $sysmonScriptUrl -OutFile "$env:TEMP\sysmon_install.ps1"
 Invoke-WebRequest -Uri $sysmonConfigUrl -OutFile "$sysmonFolder\sysmonconfig.xml"
 
+# Install Python dependencies and PIP
+$pythonVersion = "3.13.2"; $pythonInstaller = "https://www.python.org/ftp/python/$pythonVersion/python-$pythonVersion-amd64.exe"; $packages = "requests", "numpy", "pandas"; if (-not (Get-Command python -ErrorAction SilentlyContinue)) {Invoke-WebRequest -Uri $pythonInstaller -OutFile "python-installer.exe"; Start-Process -FilePath ".\python-installer.exe" -ArgumentList "/quiet InstallAllUsers=1 PrependPath=1" -Wait; Remove-Item -Path ".\python-installer.exe"}; python -m pip install --upgrade pip; python -m pip install $packages
+
 # Run Sysmon Installation
 Start-Process -FilePath "powershell.exe" -ArgumentList "-ExecutionPolicy Bypass -File `"$env:TEMP\sysmon_install.ps1`"" -Wait -NoNewWindow
 
