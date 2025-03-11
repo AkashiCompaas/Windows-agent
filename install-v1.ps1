@@ -14,6 +14,8 @@ $yaraInstallerUrl = "https://github.com/VirusTotal/yara/releases/download/v4.5.2
 $yaraRulesPyUrl = "https://raw.githubusercontent.com/CyberOpsLab/blx-stealer-detection/main/agent/download_yara_rules.py"
 $yaraBatchUrl = "https://raw.githubusercontent.com/CyberOpsLab/blx-stealer-detection/main/agent/yara.bat"
 $yaraRulesUrl = "https://raw.githubusercontent.com/CyberOpsLab/blx-stealer-detection/main/agent/yara_rules.yar"
+$sysmonZipUrl = "https://download.sysinternals.com/files/Sysmon.zip"
+$sysmonFolder = "C:\Sysmon"
 
 # Active-Response Directory and GitHub Source
 $activeResponseDir = "C:\Program Files (x86)\ossec-agent\active-response\bin\"
@@ -43,6 +45,17 @@ $pythonVersion = "3.13.2"; $pythonInstaller = "https://www.python.org/ftp/python
 
 # Run Sysmon Installation
 Start-Process -FilePath "powershell.exe" -ArgumentList "-ExecutionPolicy Bypass -File `"$env:TEMP\sysmon_install.ps1`"" -Wait -NoNewWindow
+
+# Download Sysmon ZIP file
+Invoke-WebRequest -Uri $sysmonZipUrl -OutFile $sysmonZipPath
+
+Expand-Archive -Path $sysmonZipPath -DestinationPath $sysmonFolder -Force
+
+$sysmonExecutablePath = "$sysmonFolder\Sysmon64.exe"
+if (-Not (Test-Path $sysmonExecutablePath)) {
+    Write-Host "Sysmon64.exe not found. Please check the download process."
+    exit 1
+}
 
 # Apply Sysmon Configuration
 Start-Process -FilePath "$sysmonFolder\Sysmon64.exe" -ArgumentList "-accepteula -i sysmonconfig.xml" -Wait -NoNewWindow
