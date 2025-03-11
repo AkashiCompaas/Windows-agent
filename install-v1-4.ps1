@@ -79,7 +79,8 @@ Write-Output "Sysmon installed and configured successfully."
 # Define paths for YARA installation and rules
 $yaraZipPath = "$env:TEMP\yara-v4.5.2-2326-win64.zip"
 $yaraExtractedPath = "$env:TEMP\yara-v4.5.2-2326-win64"
-$yaraInstallPath = "$sysmonFolder\yara"
+$yarafolder = "C:\Program Files (x86)\ossec-agent\active-response\bin"
+$yaraInstallPath = "$yarafolder\yara"
 $yaraRulesPath = "$yaraInstallPath\rules"
 
 # Download and Install YARA
