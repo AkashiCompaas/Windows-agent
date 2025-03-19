@@ -1,0 +1,6 @@
+pip install pyinstaller
+pyinstaller -F "C:\Program Files (x86)\ossec-agent\active-response\bin\remove-threat.py"
+
+copy dist\remove-threat.exe "C:\Program Files (x86)\ossec-agent\active-response\bin\"
+
+Reference : https://wazuh.com/blog/ransomware-protection-on-windows-with-wazuh/
